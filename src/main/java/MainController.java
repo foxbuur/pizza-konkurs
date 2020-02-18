@@ -117,9 +117,9 @@ public class MainController implements Initializable {
             try {
                 Pizza pizza = rawPizza.build();
                 Order order = Order.builder()
-                        .pizza(pizza)
-                        .delivery(Delivery.getByName(deliveryDrop.getValue()))
-                        .discount(studentCheck.isSelected())
+                        .addPizza(pizza)
+                        .setDelivery(Delivery.getByName(deliveryDrop.getValue()))
+                        .setDiscount(studentCheck.isSelected())
                         .build();
 
                 priceLabel.setText(String.format("Pizza: %.2f + Dostawa: %.2f", rawPizza.currentPrice(), Delivery.getByName(deliveryDrop.getValue()).getPrice()));

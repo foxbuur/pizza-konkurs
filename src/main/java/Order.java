@@ -1,8 +1,11 @@
 import enums.Delivery;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
 
-    private Pizza pizza;
+    private List<Pizza> pizzas;
     private Delivery delivery;
     private boolean discount;
 
@@ -11,38 +14,51 @@ public class Order {
     private Order() {}
 
     public static final class Builder {
-        private Pizza pizza;
+        private List<Pizza> pizzas = new ArrayList<>();
         private Delivery delivery;
         private boolean discount;
 
-        private double price;
-
-        public Builder pizza(Pizza pizza) {
-            this.pizza = pizza;
-            this.price += pizza.getPrice();
+        public Builder addPizza(Pizza pizza) {
+            pizzas.add(pizza);
             return this;
         }
 
-        public Builder delivery(Delivery delivery) {
+        public Builder removePizza(Pizza pizza){
+            pizzas.remove(pizza);
+            return this;
+        }
+
+        public Builder removePizza(int index) {
+            pizzas.remove(index);
+            return this;
+        }
+
+        public Builder setDelivery(Delivery delivery) {
             this.delivery = delivery;
-            this.price += delivery.getPrice();
             return this;
         }
 
-        public Builder discount(boolean discount) {
+        public Builder setDiscount(boolean discount) {
             this.discount = discount;
             return this;
         }
 
+        public double currentPrice() {
+            double price = delivery!=null? delivery.getPrice() : 0;
+            for(Pizza pizza : pizzas)
+                price += pizza.getPrice();
+            return price;
+        }
+
         public Order build() {
-            if(pizza == null)
+            if(pizzas == null || pizzas.isEmpty())
                 throw new IllegalStateException("Not all required values given!");
 
             Order order = new Order();
-            order.pizza = pizza;
+            order.pizzas = pizzas;
             order.delivery = delivery;
             order.discount = discount;
-            order.price = discount? 0.8 * price : price;
+            order.price = currentPrice() * (discount? 0.8 : 1.0);
 
             return order;
         }
@@ -59,4 +75,5 @@ public class Order {
     public Delivery getDelivery() {
         return delivery;
     }
+
 }

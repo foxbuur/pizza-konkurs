@@ -14,12 +14,38 @@ public class OrderBuilderTest {
                 .build();
 
         Order order = Order.builder()
-                .pizza(margeritta)
-                .delivery(Delivery.NO)
-                .discount(false)
+                .addPizza(margeritta)
+                .setDelivery(Delivery.NO)
+                .setDiscount(false)
                 .build();
 
         assertEquals(13.50, order.getPrice(),0);
+    }
+
+    @Test
+    public void shouldBuildMargerittaAndCapricciosaWithoutDelivery(){
+        Pizza margeritta = Pizza.builder()
+                .setDough(Dough.ITALIAN)
+                .addTopping(Topping.TOMATO_SAUCE)
+                .addTopping(Topping.MOZZARELLA)
+                .build();
+
+        Pizza capricciosa = Pizza.builder()
+                .setDough(Dough.ITALIAN)
+                .addTopping(Topping.TOMATO_SAUCE)
+                .addTopping(Topping.MOZZARELLA)
+                .addTopping(Topping.HAM)
+                .addTopping(Topping.MUSHROOMS)
+                .build();
+
+        Order order = Order.builder()
+                .addPizza(margeritta)
+                .addPizza(capricciosa)
+                .setDelivery(Delivery.NO)
+                .setDiscount(false)
+                .build();
+
+        assertEquals(30.30, order.getPrice(),0);
     }
 
     @Test
@@ -31,9 +57,9 @@ public class OrderBuilderTest {
                 .build();
 
         Order order = Order.builder()
-                .pizza(margeritta)
-                .delivery(Delivery.JEZYCE)
-                .discount(false)
+                .addPizza(margeritta)
+                .setDelivery(Delivery.JEZYCE)
+                .setDiscount(false)
                 .build();
 
         assertEquals(18.50, order.getPrice(),0);
@@ -48,9 +74,9 @@ public class OrderBuilderTest {
                 .build();
 
         Order order = Order.builder()
-                .pizza(margeritta)
-                .delivery(Delivery.JEZYCE)
-                .discount(true)
+                .addPizza(margeritta)
+                .setDelivery(Delivery.JEZYCE)
+                .setDiscount(true)
                 .build();
 
         assertEquals(14.80, order.getPrice(),0);
@@ -59,8 +85,8 @@ public class OrderBuilderTest {
     @Test(expected = IllegalStateException.class)
     public void shouldThrowException() {
         Order order = Order.builder()
-                .delivery(Delivery.JEZYCE)
-                .discount(false)
+                .setDelivery(Delivery.JEZYCE)
+                .setDiscount(false)
                 .build();
     }
 
