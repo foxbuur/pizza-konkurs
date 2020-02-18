@@ -2,8 +2,8 @@ package enums;
 
 public enum Dough {
 
-    ITALIAN(10.00, "cienkie"),
-    AMERICAN(12.00, "grube");
+    ITALIAN(10.00, "Cienkie ciasto"),
+    AMERICAN(12.00, "Grube ciasto");
 
     private double price;
     private String name;

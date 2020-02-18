@@ -2,7 +2,7 @@ package enums;
 
 public enum Delivery {
 
-    NO(0.00, "brak"),
+    NO(0.00, "Bez dowozu"),
     GRUNWALD(4.00, "Grunwald"),
     STARE_MIASTO(5.00, "Stare miasto"),
     WILDA(5.00, "Wilda"),
