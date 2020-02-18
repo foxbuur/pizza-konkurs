@@ -25,4 +25,11 @@ public enum Delivery {
         return name;
     }
 
+    public static Delivery getByName(String name) {
+        for(Delivery delivery: Delivery.values())
+            if(delivery.name.equals(name))
+                return delivery;
+        return null;
+    }
+
 }

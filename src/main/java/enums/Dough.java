@@ -21,4 +21,11 @@ public enum Dough {
         return name;
     }
 
+    public static Dough getByName(String name) {
+        for(Dough dough: Dough.values())
+            if(dough.name.equals(name))
+                return dough;
+        return null;
+    }
+
 }

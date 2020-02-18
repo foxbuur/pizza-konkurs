@@ -33,4 +33,11 @@ public enum Topping {
         return name;
     }
 
+    public static Topping getByName(String name) {
+        for(Topping topping: Topping.values())
+            if(topping.name.equals(name))
+                return topping;
+        return null;
+    }
+
 }
