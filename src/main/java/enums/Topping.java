@@ -6,7 +6,7 @@ public enum Topping {
     GARLIC(0.90, "czosnek"),
     MUSHROOMS(1.10, "pieczarki"),
     PINEAPPLE(1.40, "ananas"),
-    MOZZARELLA(1.50, "mozzerella"),
+    MOZZARELLA(1.50, "mozzarella"),
     SALAMI(1.60, "salami"),
     ARTICHOKE(1.70, "karczochy"),
     SWEETCORN(1.90, "kukurydza"),
