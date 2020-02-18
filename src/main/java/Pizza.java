@@ -26,12 +26,23 @@ public class Pizza {
             return this;
         }
 
+        public Builder removeTopping(Topping topping) {
+            toppings.remove(topping);
+            return this;
+        }
+
+        public Builder setToppings(List<Topping> toppings) {
+            this.toppings = toppings;
+            return this;
+        }
+
         public double currentPrice() {
             double price = dough!=null? dough.getPrice() : 0;
             for(Topping topping : toppings)
                 price += topping.getPrice();
             return price;
         }
+
         public Pizza build() {
             if(dough == null)
                 throw new IllegalStateException("Not all required values given!");
