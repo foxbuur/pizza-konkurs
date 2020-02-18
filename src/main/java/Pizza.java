@@ -10,28 +10,28 @@ public class Pizza {
 
     private double price;
 
-    private Pizza() {
-
-    }
+    private Pizza() {}
 
     public static final class Builder {
         private Dough dough;
         private List<Topping> toppings = new ArrayList<>();
 
-        private double price;
-
         public Builder setDough(Dough dough) {
             this.dough = dough;
-            price += dough.getPrice();
             return this;
         }
 
         public Builder addTopping(Topping topping) {
             toppings.add(topping);
-            price += topping.getPrice();
             return this;
         }
 
+        public double currentPrice() {
+            double price = dough!=null? dough.getPrice() : 0;
+            for(Topping topping : toppings)
+                price += topping.getPrice();
+            return price;
+        }
         public Pizza build() {
             if(dough == null)
                 throw new IllegalStateException("Not all required values given!");
@@ -39,7 +39,7 @@ public class Pizza {
             Pizza pizza = new Pizza();
             pizza.dough = dough;
             pizza.toppings = toppings;
-            pizza.price = price;
+            pizza.price = currentPrice();
 
             return pizza;
         }
