@@ -2,6 +2,7 @@ import enums.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Pizza {
 
@@ -72,4 +73,8 @@ public class Pizza {
         return toppings;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Ciasto: %s, dodatki: %s, cena: %.2f", dough, toppings.stream().map(Topping::getName).collect(Collectors.toList()), price);
+    }
 }
