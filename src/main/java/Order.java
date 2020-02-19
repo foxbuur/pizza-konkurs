@@ -23,6 +23,11 @@ public class Order {
             return this;
         }
 
+        public Builder setPizzas(List<Pizza> pizzas) {
+            this.pizzas = pizzas;
+            return this;
+        }
+
         public Builder removePizza(Pizza pizza){
             pizzas.remove(pizza);
             return this;
@@ -45,9 +50,10 @@ public class Order {
 
         public double currentPrice() {
             double price = delivery!=null? delivery.getPrice() : 0;
-            for(Pizza pizza : pizzas)
-                price += pizza.getPrice();
-            return price;
+            if(!(pizzas == null || pizzas.isEmpty()))
+                for(Pizza pizza : pizzas)
+                    price += pizza.getPrice();
+            return price * (discount? 0.8 : 1.0);
         }
 
         public Order build() {
@@ -58,7 +64,7 @@ public class Order {
             order.pizzas = pizzas;
             order.delivery = delivery;
             order.discount = discount;
-            order.price = currentPrice() * (discount? 0.8 : 1.0);
+            order.price = currentPrice();
 
             return order;
         }
@@ -68,12 +74,20 @@ public class Order {
         return new Builder();
     }
 
-    public double getPrice() {
-        return price;
+    public List<Pizza> getPizzas() {
+        return pizzas;
     }
 
     public Delivery getDelivery() {
         return delivery;
+    }
+
+    public boolean getDiscount() {
+        return discount;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
 }
