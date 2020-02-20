@@ -6,51 +6,64 @@ import java.util.stream.Collectors;
 
 public class Pizza {
 
+    private Menu position;
     private Dough dough;
-    private List<Topping> toppings;
+    private List<Topping> additionalToppings;
 
     private double price;
 
     private Pizza() {}
 
     public static final class Builder {
+        private Menu position;
         private Dough dough;
-        private List<Topping> toppings = new ArrayList<>();
+        private List<Topping> additionalToppings = new ArrayList<>();
+
+        public Builder fromMenu(Menu position) {
+            this.position = position;
+            return this;
+        }
 
         public Builder setDough(Dough dough) {
             this.dough = dough;
             return this;
         }
 
+        public Builder setAdditionalToppings(List<Topping> additionalToppings) {
+            this.additionalToppings = additionalToppings;
+            return this;
+        }
+
         public Builder addTopping(Topping topping) {
-            toppings.add(topping);
+            additionalToppings.add(topping);
             return this;
         }
 
         public Builder removeTopping(Topping topping) {
-            toppings.remove(topping);
-            return this;
-        }
-
-        public Builder setToppings(List<Topping> toppings) {
-            this.toppings = toppings;
+            additionalToppings.remove(topping);
             return this;
         }
 
         public double currentPrice() {
-            double price = dough!=null? dough.getPrice() : 0;
-            for(Topping topping : toppings)
+            if(dough == null || position == null)
+                return 0.0;
+
+            double price = dough.getPrice();
+            for(Topping topping : position.getBasicToppings())
+                price += topping.getPrice();
+            for(Topping topping : additionalToppings)
                 price += topping.getPrice();
             return price;
         }
 
         public Pizza build() {
-            if(dough == null)
+            if(dough == null || position == null)
                 throw new IllegalStateException("Not all required values given!");
 
             Pizza pizza = new Pizza();
+            pizza.position = position;
             pizza.dough = dough;
-            pizza.toppings = toppings;
+            pizza.additionalToppings = additionalToppings;
             pizza.price = currentPrice();
 
             return pizza;
@@ -65,16 +78,25 @@ public class Pizza {
         return price;
     }
 
+    public Menu getPosition() {
+        return position;
+    }
+
     public Dough getDough() {
         return dough;
     }
 
-    public List<Topping> getToppings() {
-        return toppings;
+    public List<Topping> getAdditionalToppings() {
+        return additionalToppings;
     }
 
     @Override
     public String toString() {
-        return String.format("Ciasto: %s, dodatki: %s, cena: %.2f", dough, toppings.stream().map(Topping::getName).collect(Collectors.toList()), price);
+        return String.format("%s, Ciasto: %s, składniki: %s, dodatkowe składniki: %s, cena: %.2f",
+                position,
+                dough,
+                position.getBasicToppings().stream().map(Topping::getName).collect(Collectors.toList()),
+                additionalToppings.stream().map(Topping::getName).collect(Collectors.toList()),
+                price);
     }
 }

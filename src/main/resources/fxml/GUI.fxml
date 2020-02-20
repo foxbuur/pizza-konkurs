@@ -59,18 +59,6 @@
                             <GridPane.margin>
                                 <Insets left="5.0" right="5.0" />
                             </GridPane.margin>
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="MARGERITTA" />
-                                    <String fx:value="MARINARA" />
-                                    <String fx:value="NAPOLETANA" />
-                                    <String fx:value="HAWAJSKA" />
-                                    <String fx:value="FUNGHI" />
-                                    <String fx:value="QUATRO STAGIONI" />
-                                    <String fx:value="CAPRICCIOSA" />
-                                    <String fx:value="DINAMITE" />
-                                </FXCollections>
-                            </items>
                         </ChoiceBox>
                         <CheckBox text="papryka" GridPane.rowIndex="2" fx:id="pepperCheck">
                             <GridPane.margin>

@@ -8,9 +8,8 @@ public class OrderBuilderTest {
     @Test
     public void shouldBuildMargerittaWithoutDelivery(){
         Pizza margeritta = Pizza.builder()
+                .fromMenu(Menu.MARGERITTA)
                 .setDough(Dough.ITALIAN)
-                .addTopping(Topping.TOMATO_SAUCE)
-                .addTopping(Topping.MOZZARELLA)
                 .build();
 
         Order order = Order.builder()
@@ -23,37 +22,10 @@ public class OrderBuilderTest {
     }
 
     @Test
-    public void shouldBuildMargerittaAndCapricciosaWithoutDelivery(){
-        Pizza margeritta = Pizza.builder()
-                .setDough(Dough.ITALIAN)
-                .addTopping(Topping.TOMATO_SAUCE)
-                .addTopping(Topping.MOZZARELLA)
-                .build();
-
-        Pizza capricciosa = Pizza.builder()
-                .setDough(Dough.ITALIAN)
-                .addTopping(Topping.TOMATO_SAUCE)
-                .addTopping(Topping.MOZZARELLA)
-                .addTopping(Topping.HAM)
-                .addTopping(Topping.MUSHROOMS)
-                .build();
-
-        Order order = Order.builder()
-                .addPizza(margeritta)
-                .addPizza(capricciosa)
-                .setDelivery(Delivery.NO)
-                .setDiscount(false)
-                .build();
-
-        assertEquals(30.30, order.getPrice(),0);
-    }
-
-    @Test
     public void shouldBuildMargerittaWithDelivery(){
         Pizza margeritta = Pizza.builder()
+                .fromMenu(Menu.MARGERITTA)
                 .setDough(Dough.ITALIAN)
-                .addTopping(Topping.TOMATO_SAUCE)
-                .addTopping(Topping.MOZZARELLA)
                 .build();
 
         Order order = Order.builder()
@@ -68,9 +40,8 @@ public class OrderBuilderTest {
     @Test
     public void shouldBuildMargerittaWithDeliveryForStudent(){
         Pizza margeritta = Pizza.builder()
+                .fromMenu(Menu.MARGERITTA)
                 .setDough(Dough.ITALIAN)
-                .addTopping(Topping.TOMATO_SAUCE)
-                .addTopping(Topping.MOZZARELLA)
                 .build();
 
         Order order = Order.builder()
@@ -80,6 +51,44 @@ public class OrderBuilderTest {
                 .build();
 
         assertEquals(14.80, order.getPrice(),0);
+    }
+
+    @Test
+    public void shouldBuildMargerittaAndCapricciosaWithoutDelivery(){
+        Pizza margeritta = Pizza.builder()
+                .fromMenu(Menu.MARGERITTA)
+                .setDough(Dough.ITALIAN)
+                .build();
+
+        Pizza capricciosa = Pizza.builder()
+                .fromMenu(Menu.CAPRICCIOSA)
+                .setDough(Dough.ITALIAN)
+                .build();
+
+        Order order = Order.builder()
+                .addPizza(margeritta)
+                .addPizza(capricciosa)
+                .setDelivery(Delivery.NO)
+                .setDiscount(false)
+                .build();
+
+        assertEquals(30.30, order.getPrice(),0);
+    }
+
+    @Test
+    public void shouldBuildQuatroStagioniWithDeliveryForStudent(){
+        Pizza quatroStagioni = Pizza.builder()
+                .fromMenu(Menu.QUATRO_STAGIONI)
+                .setDough(Dough.ITALIAN)
+                .build();
+
+        Order order = Order.builder()
+                .addPizza(quatroStagioni)
+                .setDelivery(Delivery.JEZYCE)
+                .setDiscount(true)
+                .build();
+
+        assertEquals(18.56, order.getPrice(),0);
     }
 
     @Test(expected = IllegalStateException.class)

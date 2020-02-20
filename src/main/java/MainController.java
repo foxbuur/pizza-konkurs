@@ -1,14 +1,17 @@
 import enums.Delivery;
 import enums.Dough;
 import enums.Topping;
+import enums.Menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MainController implements Initializable {
 
@@ -40,14 +43,15 @@ public class MainController implements Initializable {
     private RadioButton[] doughRadio;
     private CheckBox[] toppingCheckboxes;
 
+    private Menu position;
     private Dough selectedDough;
-    private List<Topping> selectedToppings;
+    private List<Topping> additionalToppings;
     private Delivery selectedDelivery;
     private boolean discount;
     private List<Pizza> createdPizzas;
 
     private void refreshLabels() {
-        double rawPizzaPrice = Pizza.builder().setDough(selectedDough).setToppings(selectedToppings).currentPrice();
+        double rawPizzaPrice = Pizza.builder().fromMenu(position).setDough(selectedDough).setAdditionalToppings(additionalToppings).currentPrice();
         double orderPrice = Order.builder().setDelivery(selectedDelivery).setPizzas(createdPizzas).setDiscount(discount).currentPrice();
 
         orderSummaryLabel.setText(String.format("Łącznie: %.2f", orderPrice));
@@ -55,12 +59,12 @@ public class MainController implements Initializable {
     }
 
     private void newPizza() {
-        selectedToppings = new ArrayList<>();
+        additionalToppings = new ArrayList<>();
+        position = null;
 
         for(CheckBox cb : toppingCheckboxes)
             cb.setSelected(false);
-
-        addToppings();
+        position = Menu.valueOf(menuDrop.getValue());
         refreshLabels();
     }
 
@@ -70,52 +74,10 @@ public class MainController implements Initializable {
 
         if(selectedDough!=null)
             doughGroup.getSelectedToggle().setSelected(false);
-        
+
         selectedDough = null;
         pizzaListView.getItems().clear();
         newPizza();
-    }
-
-    private void addToppings() {
-        mozzarellaCheck.setSelected(true);
-        tomatoSauceCheck.setSelected(true);
-
-        switch(menuDrop.getValue()) {
-            case "MARGERITTA":
-                break;
-            case "MARINARA":
-                garlicCheck.setSelected(true);
-                break;
-            case "NAPOLETANA":
-                blackOlivesCheck.setSelected(true);
-                break;
-            case "HAWAJSKA":
-                pineappleCheck.setSelected(true);
-                break;
-            case "FUNGHI":
-                mushroomsCheck.setSelected(true);
-                break;
-            case "QUATRO STAGIONI":
-                hamCheck.setSelected(true);
-                artichokeCheck.setSelected(true);
-                pepperCheck.setSelected(true);
-                break;
-            case "CAPRICCIOSA":
-                hamCheck.setSelected(true);
-                mushroomsCheck.setSelected(true);
-                break;
-            case "DINAMITE":
-                salamiCheck.setSelected(true);
-                break;
-            default:
-                break;
-        }
-
-        for(CheckBox cb : toppingCheckboxes)
-            if(cb.isSelected())
-                selectedToppings.add(Topping.getByName(cb.getText()));
-
-        refreshLabels();
     }
 
     @Override
@@ -130,8 +92,12 @@ public class MainController implements Initializable {
                 sweetcornCheck, baconCheck, garlicSauceCheck, blackOlivesCheck
         };
 
+        menuDrop.getItems().addAll(Arrays.stream(Menu.values()).map(Menu::toString).collect(Collectors.toList()));
+
         menuDrop.setOnAction(event -> {
             newPizza();
+            position = Menu.valueOf(menuDrop.getValue());
+            refreshLabels();
         });
 
         deliveryDrop.setOnAction(event -> {
@@ -141,7 +107,7 @@ public class MainController implements Initializable {
 
         addPizzaButton.setOnAction(event -> {
             try {
-                Pizza pizza = Pizza.builder().setToppings(selectedToppings).setDough(selectedDough).build();
+                Pizza pizza = Pizza.builder().fromMenu(position).setAdditionalToppings(additionalToppings).setDough(selectedDough).build();
                 createdPizzas.add(pizza);
                 pizzaListView.getItems().add(pizza);
 
@@ -189,9 +155,9 @@ public class MainController implements Initializable {
         for(CheckBox cb : toppingCheckboxes)
             cb.setOnAction(event -> {
                 if(cb.isSelected())
-                    selectedToppings.add(Topping.getByName(cb.getText()));
+                    additionalToppings.add(Topping.getByName(cb.getText()));
                 else
-                    selectedToppings.remove(Topping.getByName(cb.getText()));
+                    additionalToppings.remove(Topping.getByName(cb.getText()));
 
                 refreshLabels();
             });
