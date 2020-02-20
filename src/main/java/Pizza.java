@@ -1,5 +1,6 @@
 import enums.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ public class Pizza {
     private Dough dough;
     private List<Topping> additionalToppings;
 
-    private double price;
+    private BigDecimal price;
 
     private Pizza() {}
 
@@ -44,15 +45,15 @@ public class Pizza {
             return this;
         }
 
-        public double currentPrice() {
+        public BigDecimal currentPrice() {
             if(dough == null || position == null)
-                return 0.0;
+                return new BigDecimal("0.00");
 
-            double price = dough.getPrice();
+            BigDecimal price = dough.getPrice();
             for(Topping topping : position.getBasicToppings())
-                price += topping.getPrice();
+                price = price.add(topping.getPrice());
             for(Topping topping : additionalToppings)
-                price += topping.getPrice();
+                price = price.add(topping.getPrice());
             return price;
         }
 
@@ -74,7 +75,7 @@ public class Pizza {
         return new Builder();
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

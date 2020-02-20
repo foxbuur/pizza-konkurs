@@ -1,6 +1,8 @@
 import enums.*;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PizzaBuilderTest {
@@ -12,7 +14,7 @@ public class PizzaBuilderTest {
                 .setDough(Dough.ITALIAN)
                 .build();
 
-        assertEquals(13.50,pizza.getPrice(),0);
+        assertEquals(new BigDecimal("13.50"), pizza.getPrice());
     }
 
     @Test
@@ -24,7 +26,7 @@ public class PizzaBuilderTest {
                 .addTopping(Topping.BACON)
                 .build();
 
-        assertEquals(19.70,pizza.getPrice(),0);
+        assertEquals(new BigDecimal("19.70"), pizza.getPrice());
     }
 
     @Test(expected = IllegalStateException.class)

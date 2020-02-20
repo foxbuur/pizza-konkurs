@@ -1,19 +1,21 @@
 package enums;
 
+import java.math.BigDecimal;
+
 public enum Dough {
 
-    ITALIAN(10.00, "Cienkie ciasto"),
-    AMERICAN(12.00, "Grube ciasto");
+    ITALIAN("10.00", "Cienkie ciasto"),
+    AMERICAN("12.00", "Grube ciasto");
 
-    private double price;
+    private BigDecimal price;
     private String name;
 
-    Dough(double price, String name) {
-        this.price = price;
+    Dough(String price, String name) {
+        this.price = new BigDecimal(price);
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

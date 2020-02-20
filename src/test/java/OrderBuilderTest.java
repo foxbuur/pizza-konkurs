@@ -1,6 +1,8 @@
 import enums.*;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderBuilderTest {
@@ -18,7 +20,7 @@ public class OrderBuilderTest {
                 .setDiscount(false)
                 .build();
 
-        assertEquals(13.50, order.getPrice(),0);
+        assertEquals(new BigDecimal("13.50"), order.getPrice());
     }
 
     @Test
@@ -34,7 +36,7 @@ public class OrderBuilderTest {
                 .setDiscount(false)
                 .build();
 
-        assertEquals(18.50, order.getPrice(),0);
+        assertEquals(new BigDecimal("18.50"), order.getPrice());
     }
 
     @Test
@@ -50,7 +52,7 @@ public class OrderBuilderTest {
                 .setDiscount(true)
                 .build();
 
-        assertEquals(14.80, order.getPrice(),0);
+        assertEquals(new BigDecimal("14.80"), order.getPrice());
     }
 
     @Test
@@ -72,7 +74,7 @@ public class OrderBuilderTest {
                 .setDiscount(false)
                 .build();
 
-        assertEquals(30.30, order.getPrice(),0);
+        assertEquals(new BigDecimal("30.30"), order.getPrice());
     }
 
     @Test
@@ -88,7 +90,7 @@ public class OrderBuilderTest {
                 .setDiscount(true)
                 .build();
 
-        assertEquals(18.56, order.getPrice(),0);
+        assertEquals(new BigDecimal("18.56"), order.getPrice());
     }
 
     @Test(expected = IllegalStateException.class)

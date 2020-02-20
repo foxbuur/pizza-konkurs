@@ -1,23 +1,25 @@
 package enums;
 
+import java.math.BigDecimal;
+
 public enum Delivery {
 
-    NO(0.00, "Bez dowozu"),
-    GRUNWALD(4.00, "Grunwald"),
-    STARE_MIASTO(5.00, "Stare miasto"),
-    WILDA(5.00, "Wilda"),
-    JEZYCE(5.00, "Jeżyce"),
-    NOWE_MIASTO(6.00, "Nowe miasto");
+    NO("0.00", "Bez dowozu"),
+    GRUNWALD("4.00", "Grunwald"),
+    STARE_MIASTO("5.00", "Stare miasto"),
+    WILDA("5.00", "Wilda"),
+    JEZYCE("5.00", "Jeżyce"),
+    NOWE_MIASTO("6.00", "Nowe miasto");
 
-    private double price;
+    private BigDecimal price;
     private String name;
 
-    Delivery(double price, String name) {
-        this.price = price;
+    Delivery(String price, String name) {
+        this.price = new BigDecimal(price);
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

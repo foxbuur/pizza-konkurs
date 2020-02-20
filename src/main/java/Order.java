@@ -1,5 +1,7 @@
 import enums.Delivery;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Order {
     private Delivery delivery;
     private boolean discount;
 
-    private double price;
+    private BigDecimal price;
 
     private Order() {}
 
@@ -48,12 +50,13 @@ public class Order {
             return this;
         }
 
-        public double currentPrice() {
-            double price = delivery!=null? delivery.getPrice() : 0;
+        public BigDecimal currentPrice() {
+            BigDecimal price = delivery!=null? delivery.getPrice() : BigDecimal.ZERO;
             if(!(pizzas == null || pizzas.isEmpty()))
                 for(Pizza pizza : pizzas)
-                    price += pizza.getPrice();
-            return price * (discount? 0.8 : 1.0);
+                    price = price.add(pizza.getPrice());
+            price = price.multiply(discount? new BigDecimal("0.80") : BigDecimal.ONE);
+            return price.setScale(2, RoundingMode.HALF_EVEN);
         }
 
         public Order build() {
@@ -86,7 +89,7 @@ public class Order {
         return discount;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

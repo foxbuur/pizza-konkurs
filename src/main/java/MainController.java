@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,8 +52,8 @@ public class MainController implements Initializable {
     private List<Pizza> createdPizzas;
 
     private void refreshLabels() {
-        double rawPizzaPrice = Pizza.builder().fromMenu(position).setDough(selectedDough).setAdditionalToppings(additionalToppings).currentPrice();
-        double orderPrice = Order.builder().setDelivery(selectedDelivery).setPizzas(createdPizzas).setDiscount(discount).currentPrice();
+        BigDecimal rawPizzaPrice = Pizza.builder().fromMenu(position).setDough(selectedDough).setAdditionalToppings(additionalToppings).currentPrice();
+        BigDecimal orderPrice = Order.builder().setDelivery(selectedDelivery).setPizzas(createdPizzas).setDiscount(discount).currentPrice();
 
         orderSummaryLabel.setText(String.format("Łącznie: %.2f", orderPrice));
         priceLabel.setText(String.format("Łącznie: %.2f", rawPizzaPrice));
