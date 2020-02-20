@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     private Button submitButton, addPizzaButton;
 
     @FXML
-    private Label priceLabel, orderSummaryLabel;
+    private Label priceLabel, orderSummaryLabel, basicToppingsLabel;
 
     @FXML
     private ListView<Pizza> pizzaListView;
@@ -65,6 +65,7 @@ public class MainController implements Initializable {
         for(CheckBox cb : toppingCheckboxes)
             cb.setSelected(false);
         position = Menu.valueOf(menuDrop.getValue());
+        basicToppingsLabel.setText(String.format("Podstawowe składniki: %s", position.getBasicToppings().stream().map(Topping::getName).collect(Collectors.toList())));
         refreshLabels();
     }
 
@@ -96,7 +97,6 @@ public class MainController implements Initializable {
 
         menuDrop.setOnAction(event -> {
             newPizza();
-            position = Menu.valueOf(menuDrop.getValue());
             refreshLabels();
         });
 

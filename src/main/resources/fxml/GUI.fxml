@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -8,173 +10,225 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import javafx.scene.control.ToggleGroup?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <children>
-        <SplitPane dividerPositions="0.6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+        <SplitPane dividerPositions="0.60" minHeight="-Infinity" minWidth="-Infinity">
             <items>
-                <GridPane>
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                <VBox prefHeight="500.0">
                     <children>
-                        <RadioButton text="Cienkie ciasto" fx:id="italianRadio">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                            <toggleGroup>
-                                <ToggleGroup fx:id="doughGroup"/>
-                            </toggleGroup>
-                        </RadioButton>
-                        <RadioButton text="Grube ciasto" GridPane.columnIndex="1" fx:id="americanRadio">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                            <toggleGroup>
-                                <fx:reference source="doughGroup"/>
-                            </toggleGroup>
-                        </RadioButton>
-                        <ChoiceBox fx:id="menuDrop" value="MARGERITTA" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </ChoiceBox>
-                        <CheckBox text="papryka" GridPane.rowIndex="2" fx:id="pepperCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="pieczarki" GridPane.rowIndex="3" fx:id="mushroomsCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="mozzarella" GridPane.rowIndex="4" fx:id="mozzarellaCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="karczochy" GridPane.rowIndex="5" fx:id="artichokeCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="sos pomidorowy" GridPane.rowIndex="6" fx:id="tomatoSauceCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="szynka" GridPane.rowIndex="7" fx:id="hamCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="oliwa z oliwek" GridPane.rowIndex="8" fx:id="oliveOilCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="czosnek" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="garlicCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="ananas" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="pineappleCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="salami" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="salamiCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="kukurydza" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="sweetcornCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="bekon" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="baconCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="sos czosnkowy" GridPane.columnIndex="1" GridPane.rowIndex="7" fx:id="garlicSauceCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <CheckBox text="czarne oliwki" GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="blackOlivesCheck">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
-                        </CheckBox>
-                        <Label maxWidth="1.7976931348623157E308" alignment="CENTER" text="Label" GridPane.columnSpan="2" GridPane.rowIndex="9" fx:id="priceLabel">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
+                        <TitledPane text="Menu" collapsible="false">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <ChoiceBox fx:id="menuDrop" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" value="MARGERITTA" />
+                                        <Label fx:id="basicToppingsLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label">
+                                            <VBox.margin>
+                                                <Insets top="5.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </content>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </TitledPane>
+                        <TitledPane text="Ciasto" collapsible="false">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <content>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <RadioButton fx:id="italianRadio" text="Cienkie ciasto">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="doughGroup" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="americanRadio" text="Grube ciasto" GridPane.columnIndex="1">
+                                            <toggleGroup>
+                                                <fx:reference source="doughGroup" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                    </children>
+                                </GridPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane text="Dodatkowe składniki" collapsible="false">
+                            <content>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <CheckBox fx:id="pepperCheck" text="papryka">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="mushroomsCheck" text="pieczarki" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="mozzarellaCheck" text="mozzarella" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="artichokeCheck" text="karczochy" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="tomatoSauceCheck" text="sos pomidorowy" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="hamCheck" text="szynka" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="oliveOilCheck" text="oliwa z oliwek" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="garlicCheck" text="czosnek" GridPane.columnIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="pineappleCheck" text="ananas" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="salamiCheck" text="salami" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="sweetcornCheck" text="kukurydza" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="baconCheck" text="bekon" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="garlicSauceCheck" text="sos czosnkowy" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="blackOlivesCheck" text="czarne oliwki" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </CheckBox>
+                                    </children>
+                                </GridPane>
+                            </content>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </TitledPane>
+                        <Label fx:id="priceLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
                         </Label>
-                        <Button maxWidth="1.7976931348623157E308" text="Dodaj pizzę" GridPane.columnSpan="2" GridPane.rowIndex="10" fx:id="addPizzaButton">
-                            <GridPane.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </GridPane.margin>
+                        <Button fx:id="addPizzaButton" maxWidth="1.7976931348623157E308" text="Dodaj pizzę">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
                         </Button>
                     </children>
-                </GridPane>
-                <VBox alignment="CENTER" prefHeight="375.0">
+                </VBox>
+                <VBox prefHeight="500.0">
                     <children>
-                        <CheckBox text="Jestem studentem!" fx:id="studentCheck">
+                        <TitledPane text="Dowóz" collapsible="false">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <ChoiceBox fx:id="deliveryDrop" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" value="Bez dowozu">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="Bez dowozu" />
+                                                    <String fx:value="Grunwald" />
+                                                    <String fx:value="Stare miasto" />
+                                                    <String fx:value="Wilda" />
+                                                    <String fx:value="Jeżyce" />
+                                                    <String fx:value="Nowe miasto" />
+                                                </FXCollections>
+                                            </items>
+                                        </ChoiceBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </TitledPane>
+                        <TitledPane text="Zniżka" collapsible="false">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <CheckBox fx:id="studentCheck" text="Jestem studentem!" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+                        <TitledPane text="Podsumowanie" collapsible="false">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <ListView fx:id="pizzaListView" />
+                                    </children>
+                                </VBox>
+                            </content>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </TitledPane>
+                        <Label fx:id="orderSummaryLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label">
                             <VBox.margin>
-                                <Insets top="5.0" />
-                            </VBox.margin>
-                        </CheckBox>
-                        <ChoiceBox fx:id="deliveryDrop" value="Bez dowozu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-                            <VBox.margin>
-                                <Insets left="5.0" right="5.0" top="5.0" />
-                            </VBox.margin>
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Bez dowozu" />
-                                    <String fx:value="Grunwald" />
-                                    <String fx:value="Stare miasto" />
-                                    <String fx:value="Wilda" />
-                                    <String fx:value="Jeżyce" />
-                                    <String fx:value="Nowe miasto" />
-                                </FXCollections>
-                            </items>
-                        </ChoiceBox>
-                        <ListView prefWidth="200.0" fx:id="pizzaListView">
-                            <VBox.margin>
-                                <Insets left="5.0" right="5.0" top="5.0" />
-                            </VBox.margin>
-                        </ListView>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label" fx:id="orderSummaryLabel">
-                            <VBox.margin>
-                                <Insets left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </VBox.margin>
                         </Label>
-                        <Button maxWidth="1.7976931348623157E308" prefWidth="320.0" text="Zamów" fx:id="submitButton">
+                        <Button fx:id="submitButton" maxWidth="1.7976931348623157E308" prefWidth="320.0" text="Zamów">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </VBox.margin>
