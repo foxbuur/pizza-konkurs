@@ -14,7 +14,7 @@ public class FxMain extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("fxml/GUI.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.getIcons().add(new Image("http://files.softicons.com/download/toolbar-icons/fatcow-hosting-extra-icons-2-by-fatcow/png/32x32/pizza.png"));
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("png/icon.png")));
             primaryStage.setTitle("Pizza - konkurs");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
