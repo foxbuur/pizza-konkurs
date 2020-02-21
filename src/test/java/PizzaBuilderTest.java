@@ -1,4 +1,4 @@
-import enums.*;
+import model.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;

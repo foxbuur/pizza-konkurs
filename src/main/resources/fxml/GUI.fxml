@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <children>
         <SplitPane dividerPositions="0.60" minHeight="-Infinity" minWidth="-Infinity">
             <items>

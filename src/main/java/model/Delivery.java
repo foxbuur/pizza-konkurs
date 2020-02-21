@@ -1,4 +1,4 @@
-package enums;
+package model;
 
 import java.math.BigDecimal;
 

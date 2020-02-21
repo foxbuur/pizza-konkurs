@@ -1,4 +1,4 @@
-import enums.*;
+import model.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -95,6 +95,7 @@ public class OrderBuilderTest {
 
     @Test(expected = IllegalStateException.class)
     public void shouldThrowException() {
+        //It should throw exception - order cannot be crated without a pizza.
         Order order = Order.builder()
                 .setDelivery(Delivery.JEZYCE)
                 .setDiscount(false)
